@@ -29,6 +29,13 @@ export default {
                 console.log(res.data);
             })
         },
+        deleteCrop(){
+    let id = this.$route.params.id;
+      axios.delete(`http://127.0.0.1:8000/api/flora/${id}`).then(res=>{
+        this.floras=this.floras.filter(flora=>flora.id!==id);
+      })
+
+    }
        
     }
 }

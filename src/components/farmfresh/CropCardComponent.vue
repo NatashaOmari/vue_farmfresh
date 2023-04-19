@@ -11,7 +11,7 @@
                         <p class="mb-0">{{ flora.number }}</p>
                         <p class="mb-0">{{ flora.note }}</p>
                         <router-link class="btn btn-primary" :to="'/crop/' + flora.id + '/edit'">Update</router-link> 
-                        <button class="btn btn-danger" @click="deleteCrop">Delete</button>
+                        <button class="btn btn-danger" @click="deleteCrop(id)">Delete</button>
                     </div>
                 </div>
             </div>
@@ -23,8 +23,8 @@
 export default {
     props:['floras'],
     methods: {
-        deleteCrop(){
-        this.$emit('delete-crop',this.id);
+        deleteCrop(id){
+        this.$emit('delete-crop', id);
     }
 }
 }

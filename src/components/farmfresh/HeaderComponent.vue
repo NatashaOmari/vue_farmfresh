@@ -34,6 +34,9 @@
         <a href="index.html" class="navbar-brand d-flex d-lg-none">
             <h1 class="m-0 display-4 text-secondary"><span class="text-white">Farm</span>Fresh</h1>
         </a>
+        <div v-if="userStore.token">
+            <h1>Welcome {{ userStore.user.name }}</h1>
+        </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -43,9 +46,9 @@
                 <router-link to="/about" class="nav-item nav-link">About</router-link>
                 <router-link to="/crops" class="nav-item nav-link">Crops</router-link>
                 <router-link to="/addCrop" class="nav-item nav-link">Add Crop</router-link>
+                <router-link to="/register" class="nav-item nav-link" v-if="!userStore.token">Register</router-link>
+                <router-link to="/login" class="nav-item nav-link" v-if="!userStore.token">Login</router-link>
                 
-                <a href="service.html" class="nav-item nav-link">Service</a>
-                <a href="product.html" class="nav-item nav-link">Product</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu m-0">
@@ -64,8 +67,14 @@
     </div>
 </template>
 <script>
+import { useAuthStore } from '../../stores/auth';
 export default {
-    
+    setup() {
+        let userStore=useAuthStore();
+    return {
+        userStore
+    }; 
+    }
 }
 </script>
 <style>
